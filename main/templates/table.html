@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadval Yaratish Generatori</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 16px;
+            margin: 10px 0 5px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Jadval Yaratish Generatori</h1>
+
+    <label for="rows">Qatorlar sonini kiriting:</label>
+    <input type="number" id="rows" placeholder="Masalan, 5" />
+
+    <label for="columns">Ustunlar sonini kiriting:</label>
+    <input type="number" id="columns" placeholder="Masalan, 4" />
+
+    <button onclick="generateTable()">Jadvalni yaratish</button>
+
+    <div id="table-container"></div>
+</div>
+
+<script>
+    function generateTable() {
+        var rows = parseInt(document.getElementById("rows").value);
+        var columns = parseInt(document.getElementById("columns").value);
+
+        if (isNaN(rows) || isNaN(columns) || rows <= 0 || columns <= 0) {
+            alert("Iltimos, to'g'ri sonlarni kiriting.");
+            return;
+        }
+
+        var table = "<table>";
+
+        // Create table header (optional)
+        table += "<tr>";
+        for (var c = 1; c <= columns; c++) {
+            table += "<th>Ustun " + c + "</th>";
+        }
+        table += "</tr>";
+
+        // Create table rows
+        for (var r = 1; r <= rows; r++) {
+            table += "<tr>";
+            for (var c = 1; c <= columns; c++) {
+                table += "<td>Qator " + r + ", Ustun " + c + "</td>";
+            }
+            table += "</tr>";
+        }
+
+        table += "</table>";
+
+        // Insert table into the container
+        document.getElementById("table-container").innerHTML = table;
+    }
+</script>
+
+</body>
+</html>

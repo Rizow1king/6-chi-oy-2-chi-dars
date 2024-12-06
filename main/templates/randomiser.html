@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Son Generatori</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #random-number {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Random Son Generatori</h1>
+    <button onclick="generateRandomNumber()">Random Sonni Yaratish</button>
+    <div id="random-number">0</div>
+</div>
+
+<script>
+    function generateRandomNumber() {
+        const randomNumber = Math.floor(Math.random() * 100) + 1; 
+        document.getElementById("random-number").innerText = randomNumber;
+    }
+</script>
+
+</body>
+</html>

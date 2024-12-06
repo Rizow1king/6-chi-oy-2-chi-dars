@@ -1,0 +1,152 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qiziqarli Savol-Javob O'yini</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            background-color: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .options li:hover {
+            background-color: #e0e0e0;
+        }
+        .result {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Qiziqarli Savol-Javob O'yini</h1>
+
+    <div id="quiz-container">
+        <div id="question-container">
+            <p class="question" id="question"></p>
+            <ul class="options" id="options"></ul>
+        </div>
+
+        <div id="result" class="result">
+            <p id="score"></p>
+            <button onclick="resetGame()">Yangi o'yin</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "O'zbekiston poytaxti qaysi shahar?",
+            options: ["Samarkand", "Buxoro", "Toshkent", "Farg'ona"],
+            correct: "Toshkent"
+        },
+        {
+            question: "Dunyoning eng uzun daryosi qaysi?",
+            options: ["Amazonka", "Nil", "Yangtze", "Missouri"],
+            correct: "Amazonka"
+        },
+        {
+            question: "Python dasturlash tili qachon yaratilgan?",
+            options: ["1991", "1980", "2000", "1995"],
+            correct: "1991"
+        },
+        {
+            question: "Dunyoning eng baland tog'i qaysi?",
+            options: ["Everest", "K2", "Kilimanjaro", "Elbrus"],
+            correct: "Everest"
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function loadQuestion() {
+        const question = questions[currentQuestionIndex];
+        document.getElementById("question").innerText = question.question;
+
+        const optionsList = document.getElementById("options");
+        optionsList.innerHTML = '';
+        question.options.forEach((option, index) => {
+            const li = document.createElement("li");
+            li.innerText = option;
+            li.onclick = () => checkAnswer(option);
+            optionsList.appendChild(li);
+        });
+    }
+
+    function checkAnswer(answer) {
+        const correctAnswer = questions[currentQuestionIndex].correct;
+
+        if (answer === correctAnswer) {
+            score++;
+        }
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        document.getElementById("question-container").style.display = 'none';
+        const resultContainer = document.getElementById("result");
+        resultContainer.style.display = 'block';
+        document.getElementById("score").innerText = `Sizning ballingiz: ${score}/${questions.length}`;
+    }
+
+    function resetGame() {
+        currentQuestionIndex = 0;
+        score = 0;
+        document.getElementById("question-container").style.display = 'block';
+        document.getElementById("result").style.display = 'none';
+        loadQuestion();
+    }
+
+    // Initialize the game
+    loadQuestion();
+</script>
+
+</body>
+</html>

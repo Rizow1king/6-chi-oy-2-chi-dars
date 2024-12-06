@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oddiy To'lov Hisoblagichi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="number"], input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Oddiy To'lov Hisoblagichi</h1>
+
+    <label for="amount">Boshqa summa:</label>
+    <input type="number" id="amount" placeholder="Masalan, 1000" />
+
+    <label for="tax">Soliq foizi:</label>
+    <input type="number" id="tax" placeholder="Masalan, 10" />
+
+    <label for="discount">Chegirma foizi:</label>
+    <input type="number" id="discount" placeholder="Masalan, 5" />
+
+    <input type="button" value="Hisoblash" onclick="calculateTotal()" />
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateTotal() {
+        var amount = parseFloat(document.getElementById("amount").value);
+        var tax = parseFloat(document.getElementById("tax").value);
+        var discount = parseFloat(document.getElementById("discount").value);
+
+        if (isNaN(amount) || isNaN(tax) || isNaN(discount)) {
+            document.getElementById("result").innerText = "Iltimos, barcha maydonlarni to'ldiring.";
+            return;
+        }
+
+        var taxAmount = (tax / 100) * amount;
+        var discountAmount = (discount / 100) * amount;
+
+        var totalAmount = amount + taxAmount - discountAmount;
+
+        document.getElementById("result").innerText = "Jami to'lov: " + totalAmount.toFixed(2) + " so'm";
+    }
+</script>
+
+</body>
+</html>
